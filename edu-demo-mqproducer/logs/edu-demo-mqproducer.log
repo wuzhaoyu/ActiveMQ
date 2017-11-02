@@ -1,0 +1,487 @@
+[INFO ][20171102 15:48:40,089][AbstractApplicationContext:510] Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@38e07fc8: startup date [Thu Nov 02 15:48:40 GMT+08:00 2017]; root of context hierarchy
+[INFO ][20171102 15:48:40,201][XmlBeanDefinitionReader:315] Loading XML bean definitions from class path resource [spring/spring-context.xml]
+[INFO ][20171102 15:48:40,712][XmlBeanDefinitionReader:315] Loading XML bean definitions from class path resource [spring/spring-mq.xml]
+[INFO ][20171102 15:48:41,225][PropertiesLoaderSupport:172] Loading properties file from class path resource [mq.properties]
+[INFO ][20171102 15:48:41,328][DefaultListableBeanFactory:598] Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@31958905: defining beans [org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,mqProducer,org.springframework.context.support.PropertySourcesPlaceholderConfigurer#0,org.springframework.aop.config.internalAutoProxyCreator,targetConnectionFactory,pooledConnectionFactory,connectionFactory,activeMqJmsTemplate,org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor]; root of factory hierarchy
+[INFO ][20171102 15:48:41,606][DefaultSingletonBeanRegistry:444] Destroying singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@31958905: defining beans [org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,mqProducer,org.springframework.context.support.PropertySourcesPlaceholderConfigurer#0,org.springframework.aop.config.internalAutoProxyCreator,targetConnectionFactory,pooledConnectionFactory,connectionFactory,activeMqJmsTemplate,org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor]; root of factory hierarchy
+[ERROR][20171102 15:48:41,607][MQProducerTest:36] ==>MQ context start error:
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'mqProducer': Injection of autowired dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Could not autowire field: private org.springframework.jms.core.JmsTemplate wusc.edu.demo.mqtest.MQProducer.activeMqJmsTemplate; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'activeMqJmsTemplate' defined in class path resource [spring/spring-mq.xml]: Cannot resolve reference to bean 'connectionFactory' while setting bean property 'connectionFactory'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'connectionFactory' defined in class path resource [spring/spring-mq.xml]: Cannot resolve reference to bean 'pooledConnectionFactory' while setting bean property 'targetConnectionFactory'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'pooledConnectionFactory' defined in class path resource [spring/spring-mq.xml]: Cannot resolve reference to bean 'targetConnectionFactory' while setting bean property 'connectionFactory'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'targetConnectionFactory' defined in class path resource [spring/spring-mq.xml]: Error setting property values; nested exception is org.springframework.beans.PropertyBatchUpdateException; nested PropertyAccessExceptions (1) are:
+PropertyAccessException 1: org.springframework.beans.MethodInvocationException: Property 'brokerURL' threw exception; nested exception is java.lang.IllegalArgumentException: Invalid broker URI: tcp://192.168.247.10:61616 
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:288)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1116)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:519)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:458)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:295)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:223)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:292)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:194)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:628)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:932)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:479)
+	at org.springframework.context.support.ClassPathXmlApplicationContext.<init>(ClassPathXmlApplicationContext.java:139)
+	at org.springframework.context.support.ClassPathXmlApplicationContext.<init>(ClassPathXmlApplicationContext.java:83)
+	at wusc.edu.demo.mqtest.MQProducerTest.main(MQProducerTest.java:22)
+Caused by: org.springframework.beans.factory.BeanCreationException: Could not autowire field: private org.springframework.jms.core.JmsTemplate wusc.edu.demo.mqtest.MQProducer.activeMqJmsTemplate; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'activeMqJmsTemplate' defined in class path resource [spring/spring-mq.xml]: Cannot resolve reference to bean 'connectionFactory' while setting bean property 'connectionFactory'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'connectionFactory' defined in class path resource [spring/spring-mq.xml]: Cannot resolve reference to bean 'pooledConnectionFactory' while setting bean property 'targetConnectionFactory'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'pooledConnectionFactory' defined in class path resource [spring/spring-mq.xml]: Cannot resolve reference to bean 'targetConnectionFactory' while setting bean property 'connectionFactory'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'targetConnectionFactory' defined in class path resource [spring/spring-mq.xml]: Error setting property values; nested exception is org.springframework.beans.PropertyBatchUpdateException; nested PropertyAccessExceptions (1) are:
+PropertyAccessException 1: org.springframework.beans.MethodInvocationException: Property 'brokerURL' threw exception; nested exception is java.lang.IllegalArgumentException: Invalid broker URI: tcp://192.168.247.10:61616 
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:514)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:87)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:285)
+	... 13 more
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'activeMqJmsTemplate' defined in class path resource [spring/spring-mq.xml]: Cannot resolve reference to bean 'connectionFactory' while setting bean property 'connectionFactory'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'connectionFactory' defined in class path resource [spring/spring-mq.xml]: Cannot resolve reference to bean 'pooledConnectionFactory' while setting bean property 'targetConnectionFactory'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'pooledConnectionFactory' defined in class path resource [spring/spring-mq.xml]: Cannot resolve reference to bean 'targetConnectionFactory' while setting bean property 'connectionFactory'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'targetConnectionFactory' defined in class path resource [spring/spring-mq.xml]: Error setting property values; nested exception is org.springframework.beans.PropertyBatchUpdateException; nested PropertyAccessExceptions (1) are:
+PropertyAccessException 1: org.springframework.beans.MethodInvocationException: Property 'brokerURL' threw exception; nested exception is java.lang.IllegalArgumentException: Invalid broker URI: tcp://192.168.247.10:61616 
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:329)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:107)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyPropertyValues(AbstractAutowireCapableBeanFactory.java:1387)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1128)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:519)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:458)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:295)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:223)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:292)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:194)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.findAutowireCandidates(DefaultListableBeanFactory.java:912)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:855)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:770)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:486)
+	... 15 more
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'connectionFactory' defined in class path resource [spring/spring-mq.xml]: Cannot resolve reference to bean 'pooledConnectionFactory' while setting bean property 'targetConnectionFactory'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'pooledConnectionFactory' defined in class path resource [spring/spring-mq.xml]: Cannot resolve reference to bean 'targetConnectionFactory' while setting bean property 'connectionFactory'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'targetConnectionFactory' defined in class path resource [spring/spring-mq.xml]: Error setting property values; nested exception is org.springframework.beans.PropertyBatchUpdateException; nested PropertyAccessExceptions (1) are:
+PropertyAccessException 1: org.springframework.beans.MethodInvocationException: Property 'brokerURL' threw exception; nested exception is java.lang.IllegalArgumentException: Invalid broker URI: tcp://192.168.247.10:61616 
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:329)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:107)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyPropertyValues(AbstractAutowireCapableBeanFactory.java:1387)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1128)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:519)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:458)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:295)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:223)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:292)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:194)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:323)
+	... 28 more
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'pooledConnectionFactory' defined in class path resource [spring/spring-mq.xml]: Cannot resolve reference to bean 'targetConnectionFactory' while setting bean property 'connectionFactory'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'targetConnectionFactory' defined in class path resource [spring/spring-mq.xml]: Error setting property values; nested exception is org.springframework.beans.PropertyBatchUpdateException; nested PropertyAccessExceptions (1) are:
+PropertyAccessException 1: org.springframework.beans.MethodInvocationException: Property 'brokerURL' threw exception; nested exception is java.lang.IllegalArgumentException: Invalid broker URI: tcp://192.168.247.10:61616 
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:329)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:107)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyPropertyValues(AbstractAutowireCapableBeanFactory.java:1387)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1128)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:519)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:458)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:295)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:223)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:292)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:194)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:323)
+	... 38 more
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'targetConnectionFactory' defined in class path resource [spring/spring-mq.xml]: Error setting property values; nested exception is org.springframework.beans.PropertyBatchUpdateException; nested PropertyAccessExceptions (1) are:
+PropertyAccessException 1: org.springframework.beans.MethodInvocationException: Property 'brokerURL' threw exception; nested exception is java.lang.IllegalArgumentException: Invalid broker URI: tcp://192.168.247.10:61616 
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyPropertyValues(AbstractAutowireCapableBeanFactory.java:1423)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1128)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:519)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:458)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:295)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:223)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:292)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:194)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:323)
+	... 48 more
+Caused by: org.springframework.beans.PropertyBatchUpdateException; nested PropertyAccessExceptions (1) are:
+PropertyAccessException 1: org.springframework.beans.MethodInvocationException: Property 'brokerURL' threw exception; nested exception is java.lang.IllegalArgumentException: Invalid broker URI: tcp://192.168.247.10:61616 
+	at org.springframework.beans.AbstractPropertyAccessor.setPropertyValues(AbstractPropertyAccessor.java:101)
+	at org.springframework.beans.AbstractPropertyAccessor.setPropertyValues(AbstractPropertyAccessor.java:57)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyPropertyValues(AbstractAutowireCapableBeanFactory.java:1420)
+	... 56 more
+[INFO ][20171102 15:51:30,989][AbstractApplicationContext:510] Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@38e07fc8: startup date [Thu Nov 02 15:51:30 GMT+08:00 2017]; root of context hierarchy
+[INFO ][20171102 15:51:31,086][XmlBeanDefinitionReader:315] Loading XML bean definitions from class path resource [spring/spring-context.xml]
+[INFO ][20171102 15:51:31,324][XmlBeanDefinitionReader:315] Loading XML bean definitions from URL [file:/F:/BaiduNetdiskDownload/dubbo/ppt%e6%ba%90%e7%a0%81/Dubbo%e8%a7%86%e9%a2%91%e6%95%99%e7%a8%8b--%e9%ab%98%e7%ba%a7%e7%af%87/Dubbo%e8%a7%86%e9%a2%91%e6%95%99%e7%a8%8b--%e9%ab%98%e7%ba%a7%e7%af%87--%e7%ac%ac21%e8%8a%82--ActiveMQ%e7%9a%84%e5%ae%89%e8%a3%85%e4%b8%8e%e4%bd%bf%e7%94%a8/edu-demo-mqproducer/target/classes/spring/spring/spring-mq.xml]
+[ERROR][20171102 15:51:31,326][MQProducerTest:36] ==>MQ context start error:
+org.springframework.beans.factory.parsing.BeanDefinitionParsingException: Configuration problem: Failed to import bean definitions from relative location [spring/spring-mq.xml]
+Offending resource: class path resource [spring/spring-context.xml]; nested exception is org.springframework.beans.factory.BeanDefinitionStoreException: IOException parsing XML document from URL [file:/F:/BaiduNetdiskDownload/dubbo/ppt%e6%ba%90%e7%a0%81/Dubbo%e8%a7%86%e9%a2%91%e6%95%99%e7%a8%8b--%e9%ab%98%e7%ba%a7%e7%af%87/Dubbo%e8%a7%86%e9%a2%91%e6%95%99%e7%a8%8b--%e9%ab%98%e7%ba%a7%e7%af%87--%e7%ac%ac21%e8%8a%82--ActiveMQ%e7%9a%84%e5%ae%89%e8%a3%85%e4%b8%8e%e4%bd%bf%e7%94%a8/edu-demo-mqproducer/target/classes/spring/spring/spring-mq.xml]; nested exception is java.io.FileNotFoundException: F:\BaiduNetdiskDownload\dubbo\ppt源码\Dubbo视频教程--高级篇\Dubbo视频教程--高级篇--第21节--ActiveMQ的安装与使用\edu-demo-mqproducer\target\classes\spring\spring\spring-mq.xml (系统找不到指定的路径。)
+	at org.springframework.beans.factory.parsing.FailFastProblemReporter.error(FailFastProblemReporter.java:68)
+	at org.springframework.beans.factory.parsing.ReaderContext.error(ReaderContext.java:85)
+	at org.springframework.beans.factory.parsing.ReaderContext.error(ReaderContext.java:76)
+	at org.springframework.beans.factory.xml.DefaultBeanDefinitionDocumentReader.importBeanDefinitionResource(DefaultBeanDefinitionDocumentReader.java:272)
+	at org.springframework.beans.factory.xml.DefaultBeanDefinitionDocumentReader.parseDefaultElement(DefaultBeanDefinitionDocumentReader.java:197)
+	at org.springframework.beans.factory.xml.DefaultBeanDefinitionDocumentReader.parseBeanDefinitions(DefaultBeanDefinitionDocumentReader.java:182)
+	at org.springframework.beans.factory.xml.DefaultBeanDefinitionDocumentReader.doRegisterBeanDefinitions(DefaultBeanDefinitionDocumentReader.java:139)
+	at org.springframework.beans.factory.xml.DefaultBeanDefinitionDocumentReader.registerBeanDefinitions(DefaultBeanDefinitionDocumentReader.java:108)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.registerBeanDefinitions(XmlBeanDefinitionReader.java:493)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.doLoadBeanDefinitions(XmlBeanDefinitionReader.java:390)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:334)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanDefinitionReader.loadBeanDefinitions(AbstractBeanDefinitionReader.java:174)
+	at org.springframework.beans.factory.support.AbstractBeanDefinitionReader.loadBeanDefinitions(AbstractBeanDefinitionReader.java:209)
+	at org.springframework.beans.factory.support.AbstractBeanDefinitionReader.loadBeanDefinitions(AbstractBeanDefinitionReader.java:180)
+	at org.springframework.beans.factory.support.AbstractBeanDefinitionReader.loadBeanDefinitions(AbstractBeanDefinitionReader.java:243)
+	at org.springframework.context.support.AbstractXmlApplicationContext.loadBeanDefinitions(AbstractXmlApplicationContext.java:127)
+	at org.springframework.context.support.AbstractXmlApplicationContext.loadBeanDefinitions(AbstractXmlApplicationContext.java:93)
+	at org.springframework.context.support.AbstractRefreshableApplicationContext.refreshBeanFactory(AbstractRefreshableApplicationContext.java:130)
+	at org.springframework.context.support.AbstractApplicationContext.obtainFreshBeanFactory(AbstractApplicationContext.java:537)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:451)
+	at org.springframework.context.support.ClassPathXmlApplicationContext.<init>(ClassPathXmlApplicationContext.java:139)
+	at org.springframework.context.support.ClassPathXmlApplicationContext.<init>(ClassPathXmlApplicationContext.java:83)
+	at wusc.edu.demo.mqtest.MQProducerTest.main(MQProducerTest.java:22)
+Caused by: org.springframework.beans.factory.BeanDefinitionStoreException: IOException parsing XML document from URL [file:/F:/BaiduNetdiskDownload/dubbo/ppt%e6%ba%90%e7%a0%81/Dubbo%e8%a7%86%e9%a2%91%e6%95%99%e7%a8%8b--%e9%ab%98%e7%ba%a7%e7%af%87/Dubbo%e8%a7%86%e9%a2%91%e6%95%99%e7%a8%8b--%e9%ab%98%e7%ba%a7%e7%af%87--%e7%ac%ac21%e8%8a%82--ActiveMQ%e7%9a%84%e5%ae%89%e8%a3%85%e4%b8%8e%e4%bd%bf%e7%94%a8/edu-demo-mqproducer/target/classes/spring/spring/spring-mq.xml]; nested exception is java.io.FileNotFoundException: F:\BaiduNetdiskDownload\dubbo\ppt源码\Dubbo视频教程--高级篇\Dubbo视频教程--高级篇--第21节--ActiveMQ的安装与使用\edu-demo-mqproducer\target\classes\spring\spring\spring-mq.xml (系统找不到指定的路径。)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:341)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanDefinitionReader.loadBeanDefinitions(AbstractBeanDefinitionReader.java:174)
+	at org.springframework.beans.factory.support.AbstractBeanDefinitionReader.loadBeanDefinitions(AbstractBeanDefinitionReader.java:209)
+	at org.springframework.beans.factory.xml.DefaultBeanDefinitionDocumentReader.importBeanDefinitionResource(DefaultBeanDefinitionDocumentReader.java:261)
+	... 20 more
+Caused by: java.io.FileNotFoundException: F:\BaiduNetdiskDownload\dubbo\ppt源码\Dubbo视频教程--高级篇\Dubbo视频教程--高级篇--第21节--ActiveMQ的安装与使用\edu-demo-mqproducer\target\classes\spring\spring\spring-mq.xml (系统找不到指定的路径。)
+	at java.io.FileInputStream.open(Native Method)
+	at java.io.FileInputStream.<init>(FileInputStream.java:146)
+	at java.io.FileInputStream.<init>(FileInputStream.java:101)
+	at sun.net.www.protocol.file.FileURLConnection.connect(FileURLConnection.java:90)
+	at sun.net.www.protocol.file.FileURLConnection.getInputStream(FileURLConnection.java:188)
+	at org.springframework.core.io.UrlResource.getInputStream(UrlResource.java:167)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:328)
+	... 24 more
+[INFO ][20171102 15:55:14,731][AbstractApplicationContext:510] Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1ae540a4: startup date [Thu Nov 02 15:55:14 GMT+08:00 2017]; root of context hierarchy
+[INFO ][20171102 15:55:14,859][XmlBeanDefinitionReader:315] Loading XML bean definitions from class path resource [spring/spring-context.xml]
+[INFO ][20171102 15:55:15,094][XmlBeanDefinitionReader:315] Loading XML bean definitions from URL [file:/D:/src/Workspaces/Eclipse/edu-demo-mqproducer/target/classes/spring/spring/spring-mq.xml]
+[ERROR][20171102 15:55:15,098][MQProducerTest:36] ==>MQ context start error:
+org.springframework.beans.factory.parsing.BeanDefinitionParsingException: Configuration problem: Failed to import bean definitions from relative location [spring/spring-mq.xml]
+Offending resource: class path resource [spring/spring-context.xml]; nested exception is org.springframework.beans.factory.BeanDefinitionStoreException: IOException parsing XML document from URL [file:/D:/src/Workspaces/Eclipse/edu-demo-mqproducer/target/classes/spring/spring/spring-mq.xml]; nested exception is java.io.FileNotFoundException: D:\src\Workspaces\Eclipse\edu-demo-mqproducer\target\classes\spring\spring\spring-mq.xml (系统找不到指定的路径。)
+	at org.springframework.beans.factory.parsing.FailFastProblemReporter.error(FailFastProblemReporter.java:68)
+	at org.springframework.beans.factory.parsing.ReaderContext.error(ReaderContext.java:85)
+	at org.springframework.beans.factory.parsing.ReaderContext.error(ReaderContext.java:76)
+	at org.springframework.beans.factory.xml.DefaultBeanDefinitionDocumentReader.importBeanDefinitionResource(DefaultBeanDefinitionDocumentReader.java:272)
+	at org.springframework.beans.factory.xml.DefaultBeanDefinitionDocumentReader.parseDefaultElement(DefaultBeanDefinitionDocumentReader.java:197)
+	at org.springframework.beans.factory.xml.DefaultBeanDefinitionDocumentReader.parseBeanDefinitions(DefaultBeanDefinitionDocumentReader.java:182)
+	at org.springframework.beans.factory.xml.DefaultBeanDefinitionDocumentReader.doRegisterBeanDefinitions(DefaultBeanDefinitionDocumentReader.java:139)
+	at org.springframework.beans.factory.xml.DefaultBeanDefinitionDocumentReader.registerBeanDefinitions(DefaultBeanDefinitionDocumentReader.java:108)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.registerBeanDefinitions(XmlBeanDefinitionReader.java:493)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.doLoadBeanDefinitions(XmlBeanDefinitionReader.java:390)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:334)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanDefinitionReader.loadBeanDefinitions(AbstractBeanDefinitionReader.java:174)
+	at org.springframework.beans.factory.support.AbstractBeanDefinitionReader.loadBeanDefinitions(AbstractBeanDefinitionReader.java:209)
+	at org.springframework.beans.factory.support.AbstractBeanDefinitionReader.loadBeanDefinitions(AbstractBeanDefinitionReader.java:180)
+	at org.springframework.beans.factory.support.AbstractBeanDefinitionReader.loadBeanDefinitions(AbstractBeanDefinitionReader.java:243)
+	at org.springframework.context.support.AbstractXmlApplicationContext.loadBeanDefinitions(AbstractXmlApplicationContext.java:127)
+	at org.springframework.context.support.AbstractXmlApplicationContext.loadBeanDefinitions(AbstractXmlApplicationContext.java:93)
+	at org.springframework.context.support.AbstractRefreshableApplicationContext.refreshBeanFactory(AbstractRefreshableApplicationContext.java:130)
+	at org.springframework.context.support.AbstractApplicationContext.obtainFreshBeanFactory(AbstractApplicationContext.java:537)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:451)
+	at org.springframework.context.support.ClassPathXmlApplicationContext.<init>(ClassPathXmlApplicationContext.java:139)
+	at org.springframework.context.support.ClassPathXmlApplicationContext.<init>(ClassPathXmlApplicationContext.java:83)
+	at wusc.edu.demo.mqtest.MQProducerTest.main(MQProducerTest.java:22)
+Caused by: org.springframework.beans.factory.BeanDefinitionStoreException: IOException parsing XML document from URL [file:/D:/src/Workspaces/Eclipse/edu-demo-mqproducer/target/classes/spring/spring/spring-mq.xml]; nested exception is java.io.FileNotFoundException: D:\src\Workspaces\Eclipse\edu-demo-mqproducer\target\classes\spring\spring\spring-mq.xml (系统找不到指定的路径。)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:341)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanDefinitionReader.loadBeanDefinitions(AbstractBeanDefinitionReader.java:174)
+	at org.springframework.beans.factory.support.AbstractBeanDefinitionReader.loadBeanDefinitions(AbstractBeanDefinitionReader.java:209)
+	at org.springframework.beans.factory.xml.DefaultBeanDefinitionDocumentReader.importBeanDefinitionResource(DefaultBeanDefinitionDocumentReader.java:261)
+	... 20 more
+Caused by: java.io.FileNotFoundException: D:\src\Workspaces\Eclipse\edu-demo-mqproducer\target\classes\spring\spring\spring-mq.xml (系统找不到指定的路径。)
+	at java.io.FileInputStream.open(Native Method)
+	at java.io.FileInputStream.<init>(FileInputStream.java:146)
+	at java.io.FileInputStream.<init>(FileInputStream.java:101)
+	at sun.net.www.protocol.file.FileURLConnection.connect(FileURLConnection.java:90)
+	at sun.net.www.protocol.file.FileURLConnection.getInputStream(FileURLConnection.java:188)
+	at org.springframework.core.io.UrlResource.getInputStream(UrlResource.java:167)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:328)
+	... 24 more
+[INFO ][20171102 15:55:53,538][AbstractApplicationContext:510] Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1ae540a4: startup date [Thu Nov 02 15:55:53 GMT+08:00 2017]; root of context hierarchy
+[INFO ][20171102 15:55:53,632][XmlBeanDefinitionReader:315] Loading XML bean definitions from class path resource [spring/spring-context.xml]
+[INFO ][20171102 15:55:53,855][XmlBeanDefinitionReader:315] Loading XML bean definitions from class path resource [spring/spring-mq.xml]
+[INFO ][20171102 15:55:53,984][PropertiesLoaderSupport:172] Loading properties file from class path resource [mq.properties]
+[INFO ][20171102 15:55:54,031][DefaultListableBeanFactory:598] Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@8662a8b: defining beans [org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,mqProducer,org.springframework.context.support.PropertySourcesPlaceholderConfigurer#0,org.springframework.aop.config.internalAutoProxyCreator,targetConnectionFactory,pooledConnectionFactory,connectionFactory,activeMqJmsTemplate,org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor]; root of factory hierarchy
+[INFO ][20171102 15:55:54,118][DefaultSingletonBeanRegistry:444] Destroying singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@8662a8b: defining beans [org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,mqProducer,org.springframework.context.support.PropertySourcesPlaceholderConfigurer#0,org.springframework.aop.config.internalAutoProxyCreator,targetConnectionFactory,pooledConnectionFactory,connectionFactory,activeMqJmsTemplate,org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor]; root of factory hierarchy
+[ERROR][20171102 15:55:54,119][MQProducerTest:36] ==>MQ context start error:
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'mqProducer': Injection of autowired dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Could not autowire field: private org.springframework.jms.core.JmsTemplate wusc.edu.demo.mqtest.MQProducer.activeMqJmsTemplate; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'activeMqJmsTemplate' defined in class path resource [spring/spring-mq.xml]: Cannot resolve reference to bean 'connectionFactory' while setting bean property 'connectionFactory'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'connectionFactory' defined in class path resource [spring/spring-mq.xml]: Cannot resolve reference to bean 'pooledConnectionFactory' while setting bean property 'targetConnectionFactory'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'pooledConnectionFactory' defined in class path resource [spring/spring-mq.xml]: Cannot resolve reference to bean 'targetConnectionFactory' while setting bean property 'connectionFactory'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'targetConnectionFactory' defined in class path resource [spring/spring-mq.xml]: Error setting property values; nested exception is org.springframework.beans.PropertyBatchUpdateException; nested PropertyAccessExceptions (1) are:
+PropertyAccessException 1: org.springframework.beans.MethodInvocationException: Property 'brokerURL' threw exception; nested exception is java.lang.IllegalArgumentException: Invalid broker URI: tcp://192.168.247.10:61616 
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:288)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1116)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:519)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:458)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:295)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:223)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:292)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:194)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:628)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:932)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:479)
+	at org.springframework.context.support.ClassPathXmlApplicationContext.<init>(ClassPathXmlApplicationContext.java:139)
+	at org.springframework.context.support.ClassPathXmlApplicationContext.<init>(ClassPathXmlApplicationContext.java:83)
+	at wusc.edu.demo.mqtest.MQProducerTest.main(MQProducerTest.java:22)
+Caused by: org.springframework.beans.factory.BeanCreationException: Could not autowire field: private org.springframework.jms.core.JmsTemplate wusc.edu.demo.mqtest.MQProducer.activeMqJmsTemplate; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'activeMqJmsTemplate' defined in class path resource [spring/spring-mq.xml]: Cannot resolve reference to bean 'connectionFactory' while setting bean property 'connectionFactory'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'connectionFactory' defined in class path resource [spring/spring-mq.xml]: Cannot resolve reference to bean 'pooledConnectionFactory' while setting bean property 'targetConnectionFactory'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'pooledConnectionFactory' defined in class path resource [spring/spring-mq.xml]: Cannot resolve reference to bean 'targetConnectionFactory' while setting bean property 'connectionFactory'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'targetConnectionFactory' defined in class path resource [spring/spring-mq.xml]: Error setting property values; nested exception is org.springframework.beans.PropertyBatchUpdateException; nested PropertyAccessExceptions (1) are:
+PropertyAccessException 1: org.springframework.beans.MethodInvocationException: Property 'brokerURL' threw exception; nested exception is java.lang.IllegalArgumentException: Invalid broker URI: tcp://192.168.247.10:61616 
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:514)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:87)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:285)
+	... 13 more
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'activeMqJmsTemplate' defined in class path resource [spring/spring-mq.xml]: Cannot resolve reference to bean 'connectionFactory' while setting bean property 'connectionFactory'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'connectionFactory' defined in class path resource [spring/spring-mq.xml]: Cannot resolve reference to bean 'pooledConnectionFactory' while setting bean property 'targetConnectionFactory'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'pooledConnectionFactory' defined in class path resource [spring/spring-mq.xml]: Cannot resolve reference to bean 'targetConnectionFactory' while setting bean property 'connectionFactory'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'targetConnectionFactory' defined in class path resource [spring/spring-mq.xml]: Error setting property values; nested exception is org.springframework.beans.PropertyBatchUpdateException; nested PropertyAccessExceptions (1) are:
+PropertyAccessException 1: org.springframework.beans.MethodInvocationException: Property 'brokerURL' threw exception; nested exception is java.lang.IllegalArgumentException: Invalid broker URI: tcp://192.168.247.10:61616 
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:329)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:107)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyPropertyValues(AbstractAutowireCapableBeanFactory.java:1387)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1128)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:519)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:458)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:295)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:223)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:292)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:194)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.findAutowireCandidates(DefaultListableBeanFactory.java:912)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:855)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:770)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:486)
+	... 15 more
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'connectionFactory' defined in class path resource [spring/spring-mq.xml]: Cannot resolve reference to bean 'pooledConnectionFactory' while setting bean property 'targetConnectionFactory'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'pooledConnectionFactory' defined in class path resource [spring/spring-mq.xml]: Cannot resolve reference to bean 'targetConnectionFactory' while setting bean property 'connectionFactory'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'targetConnectionFactory' defined in class path resource [spring/spring-mq.xml]: Error setting property values; nested exception is org.springframework.beans.PropertyBatchUpdateException; nested PropertyAccessExceptions (1) are:
+PropertyAccessException 1: org.springframework.beans.MethodInvocationException: Property 'brokerURL' threw exception; nested exception is java.lang.IllegalArgumentException: Invalid broker URI: tcp://192.168.247.10:61616 
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:329)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:107)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyPropertyValues(AbstractAutowireCapableBeanFactory.java:1387)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1128)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:519)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:458)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:295)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:223)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:292)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:194)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:323)
+	... 28 more
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'pooledConnectionFactory' defined in class path resource [spring/spring-mq.xml]: Cannot resolve reference to bean 'targetConnectionFactory' while setting bean property 'connectionFactory'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'targetConnectionFactory' defined in class path resource [spring/spring-mq.xml]: Error setting property values; nested exception is org.springframework.beans.PropertyBatchUpdateException; nested PropertyAccessExceptions (1) are:
+PropertyAccessException 1: org.springframework.beans.MethodInvocationException: Property 'brokerURL' threw exception; nested exception is java.lang.IllegalArgumentException: Invalid broker URI: tcp://192.168.247.10:61616 
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:329)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:107)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyPropertyValues(AbstractAutowireCapableBeanFactory.java:1387)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1128)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:519)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:458)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:295)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:223)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:292)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:194)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:323)
+	... 38 more
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'targetConnectionFactory' defined in class path resource [spring/spring-mq.xml]: Error setting property values; nested exception is org.springframework.beans.PropertyBatchUpdateException; nested PropertyAccessExceptions (1) are:
+PropertyAccessException 1: org.springframework.beans.MethodInvocationException: Property 'brokerURL' threw exception; nested exception is java.lang.IllegalArgumentException: Invalid broker URI: tcp://192.168.247.10:61616 
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyPropertyValues(AbstractAutowireCapableBeanFactory.java:1423)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1128)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:519)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:458)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:295)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:223)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:292)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:194)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:323)
+	... 48 more
+Caused by: org.springframework.beans.PropertyBatchUpdateException; nested PropertyAccessExceptions (1) are:
+PropertyAccessException 1: org.springframework.beans.MethodInvocationException: Property 'brokerURL' threw exception; nested exception is java.lang.IllegalArgumentException: Invalid broker URI: tcp://192.168.247.10:61616 
+	at org.springframework.beans.AbstractPropertyAccessor.setPropertyValues(AbstractPropertyAccessor.java:101)
+	at org.springframework.beans.AbstractPropertyAccessor.setPropertyValues(AbstractPropertyAccessor.java:57)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyPropertyValues(AbstractAutowireCapableBeanFactory.java:1420)
+	... 56 more
+[INFO ][20171102 16:29:18,709][AbstractApplicationContext:510] Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@38e07fc8: startup date [Thu Nov 02 16:29:18 GMT+08:00 2017]; root of context hierarchy
+[INFO ][20171102 16:29:18,822][XmlBeanDefinitionReader:315] Loading XML bean definitions from class path resource [spring/spring-context.xml]
+[INFO ][20171102 16:29:19,268][XmlBeanDefinitionReader:315] Loading XML bean definitions from class path resource [spring/spring-mq.xml]
+[INFO ][20171102 16:29:19,667][PropertiesLoaderSupport:172] Loading properties file from class path resource [mq.properties]
+[INFO ][20171102 16:29:19,788][DefaultListableBeanFactory:598] Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@559c4c8e: defining beans [org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,mqProducer,org.springframework.context.support.PropertySourcesPlaceholderConfigurer#0,org.springframework.aop.config.internalAutoProxyCreator,targetConnectionFactory,pooledConnectionFactory,connectionFactory,activeMqJmsTemplate,org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor]; root of factory hierarchy
+[INFO ][20171102 16:29:20,105][DefaultSingletonBeanRegistry:444] Destroying singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@559c4c8e: defining beans [org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,mqProducer,org.springframework.context.support.PropertySourcesPlaceholderConfigurer#0,org.springframework.aop.config.internalAutoProxyCreator,targetConnectionFactory,pooledConnectionFactory,connectionFactory,activeMqJmsTemplate,org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor]; root of factory hierarchy
+[ERROR][20171102 16:29:20,107][MQProducerTest:36] ==>MQ context start error:
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'mqProducer': Injection of autowired dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Could not autowire field: private org.springframework.jms.core.JmsTemplate wusc.edu.demo.mqtest.MQProducer.activeMqJmsTemplate; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'activeMqJmsTemplate' defined in class path resource [spring/spring-mq.xml]: Cannot resolve reference to bean 'connectionFactory' while setting bean property 'connectionFactory'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'connectionFactory' defined in class path resource [spring/spring-mq.xml]: Cannot resolve reference to bean 'pooledConnectionFactory' while setting bean property 'targetConnectionFactory'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'pooledConnectionFactory' defined in class path resource [spring/spring-mq.xml]: Cannot resolve reference to bean 'targetConnectionFactory' while setting bean property 'connectionFactory'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'targetConnectionFactory' defined in class path resource [spring/spring-mq.xml]: Error setting property values; nested exception is org.springframework.beans.PropertyBatchUpdateException; nested PropertyAccessExceptions (1) are:
+PropertyAccessException 1: org.springframework.beans.MethodInvocationException: Property 'brokerURL' threw exception; nested exception is java.lang.IllegalArgumentException: Invalid broker URI: tcp://192.168.247.10:61616 
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:288)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1116)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:519)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:458)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:295)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:223)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:292)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:194)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:628)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:932)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:479)
+	at org.springframework.context.support.ClassPathXmlApplicationContext.<init>(ClassPathXmlApplicationContext.java:139)
+	at org.springframework.context.support.ClassPathXmlApplicationContext.<init>(ClassPathXmlApplicationContext.java:83)
+	at wusc.edu.demo.mqtest.MQProducerTest.main(MQProducerTest.java:22)
+Caused by: org.springframework.beans.factory.BeanCreationException: Could not autowire field: private org.springframework.jms.core.JmsTemplate wusc.edu.demo.mqtest.MQProducer.activeMqJmsTemplate; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'activeMqJmsTemplate' defined in class path resource [spring/spring-mq.xml]: Cannot resolve reference to bean 'connectionFactory' while setting bean property 'connectionFactory'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'connectionFactory' defined in class path resource [spring/spring-mq.xml]: Cannot resolve reference to bean 'pooledConnectionFactory' while setting bean property 'targetConnectionFactory'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'pooledConnectionFactory' defined in class path resource [spring/spring-mq.xml]: Cannot resolve reference to bean 'targetConnectionFactory' while setting bean property 'connectionFactory'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'targetConnectionFactory' defined in class path resource [spring/spring-mq.xml]: Error setting property values; nested exception is org.springframework.beans.PropertyBatchUpdateException; nested PropertyAccessExceptions (1) are:
+PropertyAccessException 1: org.springframework.beans.MethodInvocationException: Property 'brokerURL' threw exception; nested exception is java.lang.IllegalArgumentException: Invalid broker URI: tcp://192.168.247.10:61616 
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:514)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:87)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:285)
+	... 13 more
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'activeMqJmsTemplate' defined in class path resource [spring/spring-mq.xml]: Cannot resolve reference to bean 'connectionFactory' while setting bean property 'connectionFactory'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'connectionFactory' defined in class path resource [spring/spring-mq.xml]: Cannot resolve reference to bean 'pooledConnectionFactory' while setting bean property 'targetConnectionFactory'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'pooledConnectionFactory' defined in class path resource [spring/spring-mq.xml]: Cannot resolve reference to bean 'targetConnectionFactory' while setting bean property 'connectionFactory'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'targetConnectionFactory' defined in class path resource [spring/spring-mq.xml]: Error setting property values; nested exception is org.springframework.beans.PropertyBatchUpdateException; nested PropertyAccessExceptions (1) are:
+PropertyAccessException 1: org.springframework.beans.MethodInvocationException: Property 'brokerURL' threw exception; nested exception is java.lang.IllegalArgumentException: Invalid broker URI: tcp://192.168.247.10:61616 
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:329)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:107)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyPropertyValues(AbstractAutowireCapableBeanFactory.java:1387)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1128)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:519)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:458)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:295)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:223)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:292)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:194)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.findAutowireCandidates(DefaultListableBeanFactory.java:912)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:855)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:770)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:486)
+	... 15 more
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'connectionFactory' defined in class path resource [spring/spring-mq.xml]: Cannot resolve reference to bean 'pooledConnectionFactory' while setting bean property 'targetConnectionFactory'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'pooledConnectionFactory' defined in class path resource [spring/spring-mq.xml]: Cannot resolve reference to bean 'targetConnectionFactory' while setting bean property 'connectionFactory'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'targetConnectionFactory' defined in class path resource [spring/spring-mq.xml]: Error setting property values; nested exception is org.springframework.beans.PropertyBatchUpdateException; nested PropertyAccessExceptions (1) are:
+PropertyAccessException 1: org.springframework.beans.MethodInvocationException: Property 'brokerURL' threw exception; nested exception is java.lang.IllegalArgumentException: Invalid broker URI: tcp://192.168.247.10:61616 
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:329)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:107)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyPropertyValues(AbstractAutowireCapableBeanFactory.java:1387)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1128)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:519)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:458)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:295)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:223)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:292)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:194)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:323)
+	... 28 more
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'pooledConnectionFactory' defined in class path resource [spring/spring-mq.xml]: Cannot resolve reference to bean 'targetConnectionFactory' while setting bean property 'connectionFactory'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'targetConnectionFactory' defined in class path resource [spring/spring-mq.xml]: Error setting property values; nested exception is org.springframework.beans.PropertyBatchUpdateException; nested PropertyAccessExceptions (1) are:
+PropertyAccessException 1: org.springframework.beans.MethodInvocationException: Property 'brokerURL' threw exception; nested exception is java.lang.IllegalArgumentException: Invalid broker URI: tcp://192.168.247.10:61616 
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:329)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:107)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyPropertyValues(AbstractAutowireCapableBeanFactory.java:1387)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1128)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:519)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:458)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:295)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:223)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:292)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:194)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:323)
+	... 38 more
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'targetConnectionFactory' defined in class path resource [spring/spring-mq.xml]: Error setting property values; nested exception is org.springframework.beans.PropertyBatchUpdateException; nested PropertyAccessExceptions (1) are:
+PropertyAccessException 1: org.springframework.beans.MethodInvocationException: Property 'brokerURL' threw exception; nested exception is java.lang.IllegalArgumentException: Invalid broker URI: tcp://192.168.247.10:61616 
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyPropertyValues(AbstractAutowireCapableBeanFactory.java:1423)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1128)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:519)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:458)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:295)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:223)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:292)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:194)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:323)
+	... 48 more
+Caused by: org.springframework.beans.PropertyBatchUpdateException; nested PropertyAccessExceptions (1) are:
+PropertyAccessException 1: org.springframework.beans.MethodInvocationException: Property 'brokerURL' threw exception; nested exception is java.lang.IllegalArgumentException: Invalid broker URI: tcp://192.168.247.10:61616 
+	at org.springframework.beans.AbstractPropertyAccessor.setPropertyValues(AbstractPropertyAccessor.java:101)
+	at org.springframework.beans.AbstractPropertyAccessor.setPropertyValues(AbstractPropertyAccessor.java:57)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyPropertyValues(AbstractAutowireCapableBeanFactory.java:1420)
+	... 56 more
+[INFO ][20171102 16:29:59,791][AbstractApplicationContext:510] Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@40f6dcc7: startup date [Thu Nov 02 16:29:59 GMT+08:00 2017]; root of context hierarchy
+[INFO ][20171102 16:29:59,889][XmlBeanDefinitionReader:315] Loading XML bean definitions from class path resource [spring/spring-context.xml]
+[INFO ][20171102 16:30:00,149][XmlBeanDefinitionReader:315] Loading XML bean definitions from class path resource [spring/spring-mq.xml]
+[INFO ][20171102 16:30:00,292][PropertiesLoaderSupport:172] Loading properties file from class path resource [mq.properties]
+[INFO ][20171102 16:30:00,370][DefaultListableBeanFactory:598] Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@4f1e5ed9: defining beans [org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,mqProducer,org.springframework.context.support.PropertySourcesPlaceholderConfigurer#0,org.springframework.aop.config.internalAutoProxyCreator,targetConnectionFactory,pooledConnectionFactory,connectionFactory,activeMqJmsTemplate,org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor]; root of factory hierarchy
+[INFO ][20171102 16:30:00,453][DefaultSingletonBeanRegistry:444] Destroying singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@4f1e5ed9: defining beans [org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,mqProducer,org.springframework.context.support.PropertySourcesPlaceholderConfigurer#0,org.springframework.aop.config.internalAutoProxyCreator,targetConnectionFactory,pooledConnectionFactory,connectionFactory,activeMqJmsTemplate,org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor]; root of factory hierarchy
+[ERROR][20171102 16:30:00,454][MQProducerTest:36] ==>MQ context start error:
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'mqProducer': Injection of autowired dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Could not autowire field: private org.springframework.jms.core.JmsTemplate wusc.edu.demo.mqtest.MQProducer.activeMqJmsTemplate; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'activeMqJmsTemplate' defined in class path resource [spring/spring-mq.xml]: Cannot resolve reference to bean 'connectionFactory' while setting bean property 'connectionFactory'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'connectionFactory' defined in class path resource [spring/spring-mq.xml]: Cannot resolve reference to bean 'pooledConnectionFactory' while setting bean property 'targetConnectionFactory'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'pooledConnectionFactory' defined in class path resource [spring/spring-mq.xml]: Cannot resolve reference to bean 'targetConnectionFactory' while setting bean property 'connectionFactory'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'targetConnectionFactory' defined in class path resource [spring/spring-mq.xml]: Error setting property values; nested exception is org.springframework.beans.PropertyBatchUpdateException; nested PropertyAccessExceptions (1) are:
+PropertyAccessException 1: org.springframework.beans.MethodInvocationException: Property 'brokerURL' threw exception; nested exception is java.lang.IllegalArgumentException: Invalid broker URI: http://192.168.247.10:61616 
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:288)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1116)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:519)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:458)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:295)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:223)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:292)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:194)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:628)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:932)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:479)
+	at org.springframework.context.support.ClassPathXmlApplicationContext.<init>(ClassPathXmlApplicationContext.java:139)
+	at org.springframework.context.support.ClassPathXmlApplicationContext.<init>(ClassPathXmlApplicationContext.java:83)
+	at wusc.edu.demo.mqtest.MQProducerTest.main(MQProducerTest.java:22)
+Caused by: org.springframework.beans.factory.BeanCreationException: Could not autowire field: private org.springframework.jms.core.JmsTemplate wusc.edu.demo.mqtest.MQProducer.activeMqJmsTemplate; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'activeMqJmsTemplate' defined in class path resource [spring/spring-mq.xml]: Cannot resolve reference to bean 'connectionFactory' while setting bean property 'connectionFactory'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'connectionFactory' defined in class path resource [spring/spring-mq.xml]: Cannot resolve reference to bean 'pooledConnectionFactory' while setting bean property 'targetConnectionFactory'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'pooledConnectionFactory' defined in class path resource [spring/spring-mq.xml]: Cannot resolve reference to bean 'targetConnectionFactory' while setting bean property 'connectionFactory'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'targetConnectionFactory' defined in class path resource [spring/spring-mq.xml]: Error setting property values; nested exception is org.springframework.beans.PropertyBatchUpdateException; nested PropertyAccessExceptions (1) are:
+PropertyAccessException 1: org.springframework.beans.MethodInvocationException: Property 'brokerURL' threw exception; nested exception is java.lang.IllegalArgumentException: Invalid broker URI: http://192.168.247.10:61616 
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:514)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:87)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:285)
+	... 13 more
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'activeMqJmsTemplate' defined in class path resource [spring/spring-mq.xml]: Cannot resolve reference to bean 'connectionFactory' while setting bean property 'connectionFactory'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'connectionFactory' defined in class path resource [spring/spring-mq.xml]: Cannot resolve reference to bean 'pooledConnectionFactory' while setting bean property 'targetConnectionFactory'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'pooledConnectionFactory' defined in class path resource [spring/spring-mq.xml]: Cannot resolve reference to bean 'targetConnectionFactory' while setting bean property 'connectionFactory'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'targetConnectionFactory' defined in class path resource [spring/spring-mq.xml]: Error setting property values; nested exception is org.springframework.beans.PropertyBatchUpdateException; nested PropertyAccessExceptions (1) are:
+PropertyAccessException 1: org.springframework.beans.MethodInvocationException: Property 'brokerURL' threw exception; nested exception is java.lang.IllegalArgumentException: Invalid broker URI: http://192.168.247.10:61616 
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:329)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:107)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyPropertyValues(AbstractAutowireCapableBeanFactory.java:1387)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1128)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:519)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:458)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:295)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:223)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:292)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:194)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.findAutowireCandidates(DefaultListableBeanFactory.java:912)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:855)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:770)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:486)
+	... 15 more
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'connectionFactory' defined in class path resource [spring/spring-mq.xml]: Cannot resolve reference to bean 'pooledConnectionFactory' while setting bean property 'targetConnectionFactory'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'pooledConnectionFactory' defined in class path resource [spring/spring-mq.xml]: Cannot resolve reference to bean 'targetConnectionFactory' while setting bean property 'connectionFactory'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'targetConnectionFactory' defined in class path resource [spring/spring-mq.xml]: Error setting property values; nested exception is org.springframework.beans.PropertyBatchUpdateException; nested PropertyAccessExceptions (1) are:
+PropertyAccessException 1: org.springframework.beans.MethodInvocationException: Property 'brokerURL' threw exception; nested exception is java.lang.IllegalArgumentException: Invalid broker URI: http://192.168.247.10:61616 
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:329)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:107)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyPropertyValues(AbstractAutowireCapableBeanFactory.java:1387)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1128)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:519)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:458)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:295)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:223)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:292)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:194)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:323)
+	... 28 more
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'pooledConnectionFactory' defined in class path resource [spring/spring-mq.xml]: Cannot resolve reference to bean 'targetConnectionFactory' while setting bean property 'connectionFactory'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'targetConnectionFactory' defined in class path resource [spring/spring-mq.xml]: Error setting property values; nested exception is org.springframework.beans.PropertyBatchUpdateException; nested PropertyAccessExceptions (1) are:
+PropertyAccessException 1: org.springframework.beans.MethodInvocationException: Property 'brokerURL' threw exception; nested exception is java.lang.IllegalArgumentException: Invalid broker URI: http://192.168.247.10:61616 
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:329)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:107)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyPropertyValues(AbstractAutowireCapableBeanFactory.java:1387)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1128)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:519)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:458)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:295)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:223)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:292)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:194)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:323)
+	... 38 more
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'targetConnectionFactory' defined in class path resource [spring/spring-mq.xml]: Error setting property values; nested exception is org.springframework.beans.PropertyBatchUpdateException; nested PropertyAccessExceptions (1) are:
+PropertyAccessException 1: org.springframework.beans.MethodInvocationException: Property 'brokerURL' threw exception; nested exception is java.lang.IllegalArgumentException: Invalid broker URI: http://192.168.247.10:61616 
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyPropertyValues(AbstractAutowireCapableBeanFactory.java:1423)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1128)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:519)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:458)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:295)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:223)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:292)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:194)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:323)
+	... 48 more
+Caused by: org.springframework.beans.PropertyBatchUpdateException; nested PropertyAccessExceptions (1) are:
+PropertyAccessException 1: org.springframework.beans.MethodInvocationException: Property 'brokerURL' threw exception; nested exception is java.lang.IllegalArgumentException: Invalid broker URI: http://192.168.247.10:61616 
+	at org.springframework.beans.AbstractPropertyAccessor.setPropertyValues(AbstractPropertyAccessor.java:101)
+	at org.springframework.beans.AbstractPropertyAccessor.setPropertyValues(AbstractPropertyAccessor.java:57)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyPropertyValues(AbstractAutowireCapableBeanFactory.java:1420)
+	... 56 more
+[INFO ][20171102 16:30:41,957][AbstractApplicationContext:510] Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@38e07fc8: startup date [Thu Nov 02 16:30:41 GMT+08:00 2017]; root of context hierarchy
+[INFO ][20171102 16:30:42,035][XmlBeanDefinitionReader:315] Loading XML bean definitions from class path resource [spring/spring-context.xml]
+[INFO ][20171102 16:30:42,260][XmlBeanDefinitionReader:315] Loading XML bean definitions from class path resource [spring/spring-mq.xml]
+[INFO ][20171102 16:30:42,390][PropertiesLoaderSupport:172] Loading properties file from class path resource [mq.properties]
+[INFO ][20171102 16:30:42,436][DefaultListableBeanFactory:598] Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@4f1e5ed9: defining beans [org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,mqProducer,org.springframework.context.support.PropertySourcesPlaceholderConfigurer#0,org.springframework.aop.config.internalAutoProxyCreator,targetConnectionFactory,pooledConnectionFactory,connectionFactory,activeMqJmsTemplate,org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor]; root of factory hierarchy
+[INFO ][20171102 16:30:42,706][MQProducerTest:39] ===>System.exit
+[INFO ][20171102 16:56:08,856][AbstractApplicationContext:510] Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1ae540a4: startup date [Thu Nov 02 16:56:08 GMT+08:00 2017]; root of context hierarchy
+[INFO ][20171102 16:56:08,970][XmlBeanDefinitionReader:315] Loading XML bean definitions from class path resource [spring/spring-context.xml]
+[INFO ][20171102 16:56:09,297][XmlBeanDefinitionReader:315] Loading XML bean definitions from class path resource [spring/spring-mq.xml]
+[INFO ][20171102 16:56:09,446][PropertiesLoaderSupport:172] Loading properties file from class path resource [mq.properties]
+[INFO ][20171102 16:56:09,496][DefaultListableBeanFactory:598] Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@6b730ffb: defining beans [org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,mqProducer,org.springframework.context.support.PropertySourcesPlaceholderConfigurer#0,org.springframework.aop.config.internalAutoProxyCreator,targetConnectionFactory,pooledConnectionFactory,connectionFactory,activeMqJmsTemplate,org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor]; root of factory hierarchy
+[INFO ][20171102 16:56:09,911][SingleConnectionFactory:291] Established shared JMS Connection: PooledConnection { ConnectionPool[ActiveMQConnection {id=ID:LAPTOP-JCD7U7M5-51935-1509612969759-1:1,clientId=null,started=false}] }
+[INFO ][20171102 16:56:10,346][MQProducerTest:39] ===>System.exit
+[INFO ][20171102 17:01:40,961][AbstractApplicationContext:510] Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1ae540a4: startup date [Thu Nov 02 17:01:40 GMT+08:00 2017]; root of context hierarchy
+[INFO ][20171102 17:01:41,086][XmlBeanDefinitionReader:315] Loading XML bean definitions from class path resource [spring/spring-context.xml]
+[INFO ][20171102 17:01:41,399][XmlBeanDefinitionReader:315] Loading XML bean definitions from class path resource [spring/spring-mq.xml]
+[INFO ][20171102 17:01:41,550][PropertiesLoaderSupport:172] Loading properties file from class path resource [mq.properties]
+[INFO ][20171102 17:01:41,614][DefaultListableBeanFactory:598] Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@40e2ab59: defining beans [org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,mqProducer,org.springframework.context.support.PropertySourcesPlaceholderConfigurer#0,org.springframework.aop.config.internalAutoProxyCreator,targetConnectionFactory,pooledConnectionFactory,connectionFactory,activeMqJmsTemplate,org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor]; root of factory hierarchy
+[INFO ][20171102 17:01:41,901][SingleConnectionFactory:291] Established shared JMS Connection: PooledConnection { ConnectionPool[ActiveMQConnection {id=ID:LAPTOP-JCD7U7M5-52726-1509613301781-1:1,clientId=null,started=false}] }
+[INFO ][20171102 17:01:42,067][MQProducerTest:39] ===>System.exit
+[INFO ][20171102 17:20:26,922][AbstractApplicationContext:510] Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@42cb6b0a: startup date [Thu Nov 02 17:20:26 GMT+08:00 2017]; root of context hierarchy
+[INFO ][20171102 17:20:27,044][XmlBeanDefinitionReader:315] Loading XML bean definitions from class path resource [spring/spring-context.xml]
+[INFO ][20171102 17:20:27,446][XmlBeanDefinitionReader:315] Loading XML bean definitions from class path resource [spring/spring-mq.xml]
+[INFO ][20171102 17:20:27,658][PropertiesLoaderSupport:172] Loading properties file from class path resource [mq.properties]
+[INFO ][20171102 17:20:27,750][DefaultListableBeanFactory:598] Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@559c4c8e: defining beans [org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,mqProducer,org.springframework.context.support.PropertySourcesPlaceholderConfigurer#0,org.springframework.aop.config.internalAutoProxyCreator,targetConnectionFactory,pooledConnectionFactory,connectionFactory,activeMqJmsTemplate,org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor]; root of factory hierarchy
+[INFO ][20171102 17:20:28,157][SingleConnectionFactory:291] Established shared JMS Connection: PooledConnection { ConnectionPool[ActiveMQConnection {id=ID:LAPTOP-JCD7U7M5-54702-1509614428030-1:1,clientId=null,started=false}] }
+[INFO ][20171102 17:20:28,358][MQProducerTest:39] ===>System.exit
